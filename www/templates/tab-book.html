@@ -1,7 +1,6 @@
 <ion-view view-title="Books Details">
     <ion-content class="padding">
         <div class="list card">
-
             <div class="item item-avatar">
                 <img src="{{currentbook.author_image}}" height="150px">
                 <h2>{{currentbook.author}}</h2>
@@ -16,7 +15,7 @@
                 </p>
                 <p>
                     <a href="#" class="subdued">{{currentbook.price | currency:"$":0}} Price</a>
-                    <a href="#" class="subdued">{{currentbook.rating}} Rating</a>
+                    <ionic-ratings ratingsobj='ratingsObject' index='0'></ionic-ratings>
                 </p>
             </div>
 
