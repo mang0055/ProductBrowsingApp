@@ -1,0 +1,11 @@
+<ion-view view-title="Books">
+    <ion-content class="padding">
+        <div class="list" ng-repeat="book in bookdata">
+                <a class="item item-icon-left" href="#/tab/categories/{{book.cat_id}}/books/{{book._id}}" ng-model="book">
+                <img src="{{book.image}}" alt="Card image cap" height="100px" width="100px">
+                {{book.title}}</a>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

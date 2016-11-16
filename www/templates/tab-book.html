@@ -1,0 +1,25 @@
+<ion-view view-title="Books Details">
+    <ion-content class="padding">
+        <div class="list card">
+
+            <div class="item item-avatar">
+                <img src="{{currentbook.author_image}}" height="150px">
+                <h2>{{currentbook.author}}</h2>
+                <p>{{currentbook.release_date | date:'medium'}}</p>
+            </div>
+
+            <div class="item item-body">
+                <img class="full-image" src="{{currentbook.image}}">
+                <p><strong>Short Description: </strong>{{currentbook.short_description}}
+                </p>
+                <p><strong>Long Description: </strong>{{currentbook.long_description}}
+                </p>
+                <p>
+                    <a href="#" class="subdued">{{currentbook.price | currency:"$":0}} Price</a>
+                    <a href="#" class="subdued">{{currentbook.rating}} Rating</a>
+                </p>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

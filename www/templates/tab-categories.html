@@ -1,0 +1,18 @@
+<ion-view view-title="Home - Product Browsing Application">
+    <ion-content class="padding">
+        <div class="row" ng-repeat="category in data.categories" ng-if="$index % 2 === 0">
+            <div class="col col-50" ng-if="$index < data.categories.length">
+                <div class="item item-image">
+                    <img src="{{data.categories[$index].image}}" alt="Card image cap">
+                </div>
+                <a href="#/tab/categories/{{data.categories[$index]._id}}/books" class="item item-icon-left assertive">{{data.categories[$index].title}}</a>
+            </div>
+            <div class="col col-50" ng-if="$index + 1 < data.categories.length">
+                <div class="item item-image">
+                    <img src="{{data.categories[$index+1].image}}" alt="Card image cap">
+                </div>
+                <a href="#/tab/categories/{{data.categories[$index+1]._id}}/books" class="item item-icon-left assertive">{{data.categories[$index+1].title}}</a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
