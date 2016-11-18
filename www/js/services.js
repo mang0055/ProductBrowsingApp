@@ -1,18 +1,36 @@
 angular.module('starter.services', [])
- .service('fetchCategory', function ($q, $timeout, $http) {
-    // AngularJS will instantiate a singleton by calling "new" on this function
-    var fetchCategory = {
-        fetch: function(callback) {
-            return $timeout(function() {
-                return $http.get('data/data.json').then(function(response) {
-                    return angular.fromJson(response.data);
-                });
-            }, 30);
-        }
-    };
-    ;
-    return fetchCategory;
-  })
+.service('categoryService', function ($http, $q) {
+
+	this.get = function () {
+		var def = $q.defer();
+
+		$http.get("data/data.json")
+			.success(function (data) {
+				def.resolve(angular.fromJson(data.categories));
+			})
+			.error(function () {
+				def.reject("Failed to get categories");
+			});
+
+		return def.promise;
+	}
+})
+
+.service('booksService', function ($http, $q) {
+	this.get = function () {
+		var def = $q.defer();
+
+		$http.get("data/data.json")
+			.success(function (data) {
+				def.resolve(angular.fromJson(data.books));
+			})
+			.error(function () {
+				def.reject("Failed to get products");
+			});
+
+		return def.promise;
+	}
+})
 .service('fetchFromLocal',function($localStorage){
     //Took reference from https://medium.com/@petehouston/awesome-local-storage-for-ionic-with-ngstorage-c11c0284d658#.s87l8eqti
   $localStorage = $localStorage.$default({

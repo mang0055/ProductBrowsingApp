@@ -1,34 +1,34 @@
 angular.module('starter.controllers', [])
-    .controller('CategoriesCtrl', function ($scope, $stateParams, fetchCategory) {
-        fetchCategory.fetch().then(function (data) {
+    .controller('CategoriesCtrl', function ($scope, $stateParams, categoryService) {
+        categoryService.get().then(function (data) {
             $scope.data = data;
         });
 
     })
-    .controller('BookListCtrl', function ($scope, $stateParams, fetchCategory) {
+    .controller('BookListCtrl', function ($scope, $stateParams, booksService) {
         console.log("BookListCtrl");
         $scope.catID = $stateParams.catID;
         console.log($scope.catID);
         $scope.bookdata = [];
-        fetchCategory.fetch().then(function (data) {
+        booksService.get().then(function (data) {
             $scope.data = data;
-            for (var i = 0; i < data.books.length; i++) {
-                if (data.books[i].cat_id == $scope.catID) {
-                    $scope.bookdata.push(data.books[i]);
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].cat_id == $scope.catID) {
+                    $scope.bookdata.push(data[i]);
                 }
             }
 
         });
 
     })
-    .controller('BookDetailCtrl', function ($scope, $stateParams, fetchCategory, fetchFromLocal) {
+    .controller('BookDetailCtrl', function ($scope, $stateParams, booksService, fetchFromLocal) {
         $scope.catID = $stateParams.catID;
         $scope.bookID = $stateParams.bookID;
         $scope.bookdata = [];
-        fetchCategory.fetch().then(function (data) {
-            for (var i = 0; i < data.books.length; i++) {
-                if (data.books[i]._id == $stateParams.bookID) {
-                    $scope.currentbook = data.books[i];
+        booksService.get().then(function (data) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]._id == $stateParams.bookID) {
+                    $scope.currentbook = data[i];
                 }
             }
             if (fetchFromLocal.get($scope.bookID) == null) {
